@@ -15,3 +15,7 @@ document.querySelectorAll('.product-card').forEach(card => {
   });
 });
 
+// Example placeholder for future cart logic
+function addToCart(product) {
+  console.log(`Added ${product} to cart`);
+}
