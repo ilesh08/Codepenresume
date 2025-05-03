@@ -2,61 +2,42 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sweet Treats Bakery</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bakery - Sweet Treats</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
     <h1>Sweet Treats Bakery</h1>
     <nav>
-      <ul>
-        <li><a href="#products">Products</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
+      <a href="index.html">Home</a>
+      <a href="cart.html">Cart</a>
     </nav>
   </header>
 
-  <section id="hero">
-    <h2>Fresh Bakes Daily</h2>
-    <p>Delicious cakes, cookies, and pastries made with love!</p>
-  </section>
+  <section class="product-container">
+    <div class="product-card" data-name="Chocolate Cake" data-price="15.99">
+      <img src="https://source.unsplash.com/200x150/?chocolate,cake" alt="Chocolate Cake">
+      <h3>Chocolate Cake</h3>
+      <p>$15.99</p>
+      <button class="add-to-cart">Add to Cart</button>
+    </div>
 
-  <section id="products">
-    <h2>Our Products</h2>
-    <div class="product-list">
-      <div class="product-card">
-        <img src="https://source.unsplash.com/200x150/?cake" alt="Cake" />
-        <h3>Chocolate Cake</h3>
-        <p>$15.99</p>
-      </div>
-      <div class="product-card">
-        <img src="https://source.unsplash.com/200x150/?cookies" alt="Cookies" />
-        <h3>Butter Cookies</h3>
-        <p>$5.99</p>
-      </div>
-      <div class="product-card">
-        <img src="https://source.unsplash.com/200x150/?cupcake" alt="Cupcake" />
-        <h3>Vanilla Cupcake</h3>
-        <p>$3.99</p>
-      </div>
+    <div class="product-card" data-name="Cupcake" data-price="3.99">
+      <img src="https://source.unsplash.com/200x150/?cupcake" alt="Cupcake">
+      <h3>Cupcake</h3>
+      <p>$3.99</p>
+      <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card" data-name="Macaron Box" data-price="12.50">
+      <img src="https://source.unsplash.com/200x150/?macaron" alt="Macaron Box">
+      <h3>Macaron Box</h3>
+      <p>$12.50</p>
+      <button class="add-to-cart">Add to Cart</button>
     </div>
   </section>
 
-  <section id="about">
-    <h2>About Us</h2>
-    <p>We are a family-run bakery passionate about quality and freshness.</p>
-  </section>
-
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>Email: hello@sweettreats.com | Phone: 123-456-7890</p>
-  </section>
-
-  <footer>
-    <p>&copy; 2025 Sweet Treats Bakery</p>
-  </footer>
   <script src="script.js"></script>
 </body>
 </html>
