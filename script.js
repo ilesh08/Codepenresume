@@ -1,22 +1,21 @@
-/**
+// Smooth scroll for nav links
+document.querySelectorAll('nav a').forEach(link => {
+  link.addEventListener('click', function (e) {
+    e.preventDefault();
+    const section = document.querySelector(this.getAttribute('href'));
+    section.scrollIntoView({ behavior: 'smooth' });
+  });
+});
 
-Resume concept based on the Dribbble by John Wilson http://dribbble.com/shots/900308-Resume?list=users
+// Add click interaction to product cards
+document.querySelectorAll('.product-card').forEach(card => {
+  card.addEventListener('click', () => {
+    const productName = card.querySelector('h3').innerText;
+    alert(`You clicked on: ${productName}\n(This is a demo, cart functionality coming soon!)`);
+  });
+});
 
-**/
-
-$(document).ready(function() {
-  $('#item1').animate({
-     borderBottomWidth: '200px'}, 1000);
-  $('#item2').animate({
-     borderBottomWidth: '50px'}, 1000);
-  $('#item3').animate({
-     borderBottomWidth: '15px'}, 1000);
-  $('#item4').animate({
-     borderBottomWidth: '37.5px'}, 1000);
-  $('#item5').animate({
-     borderBottomWidth: '37.5px'}, 1000);
-  $('#item6').animate({
-     borderBottomWidth: '100px'}, 1000);
-  $('#item7').animate({
-     borderBottomWidth: '62.5px'}, 1000);
-})
+// Example placeholder for future cart logic
+function addToCart(product) {
+  console.log(`Added ${product} to cart`);
+}
