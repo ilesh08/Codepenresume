@@ -3,59 +3,189 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sweet Treats Bakery</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>AI Tech Store</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      scroll-behavior: smooth;
+      background-color: #f5f7fa;
+    }
+
+    header {
+      background-color: #121212;
+      color: white;
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .sidebar {
+      position: fixed;
+      left: 0;
+      top: 60px;
+      width: 200px;
+      height: 100%;
+      background: #1f1f1f;
+      color: white;
+      padding: 1rem;
+    }
+
+    .sidebar a {
+      color: white;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 1rem;
+      transition: color 0.3s;
+    }
+
+    .sidebar a:hover {
+      color: #00d8ff;
+    }
+
+    .content {
+      margin-left: 220px;
+      padding: 2rem;
+    }
+
+    .product {
+      background: white;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      margin-bottom: 2rem;
+      transition: transform 0.3s ease;
+    }
+
+    .product:hover {
+      transform: translateY(-5px);
+    }
+
+    .product button {
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      border: none;
+      background-color: #00d8ff;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+
+    .product button:hover {
+      background-color: #00b3cc;
+    }
+
+    #login {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      max-width: 300px;
+      margin: 2rem auto;
+    }
+
+    #login input {
+      width: 100%;
+      margin-bottom: 1rem;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+  </style>
 </head>
 <body>
   <header>
-    <h1>Sweet Treats Bakery</h1>
-    <nav>
-      <ul>
-        <li><a href="#products">Products</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
+    <h1>AI Tech Store</h1>
+    <div>
+      <button onclick="showLogin()">Login</button>
+      <button onclick="viewCart()">Cart (<span id="cart-count">0</span>)</button>
+    </div>
   </header>
 
-  <section id="hero">
-    <h2>Fresh Bakes Daily</h2>
-    <p>Delicious cakes, cookies, and pastries made with love!</p>
-  </section>
+  <div class="sidebar">
+    <a href="#section1">Top Sellers</a>
+    <a href="#section2">Latest AI Tools</a>
+    <a href="#section3">Categories</a>
+    <a href="#section4">Support</a>
+  </div>
 
-  <section id="products">
-    <h2>Our Products</h2>
-    <div class="product-list">
-      <div class="product-card">
-        <img src="https://source.unsplash.com/200x150/?cake" alt="Cake" />
-        <h3>Chocolate Cake</h3>
-        <p>$15.99</p>
-      </div>
-      <div class="product-card">
-        <img src="https://source.unsplash.com/200x150/?cookies" alt="Cookies" />
-        <h3>Butter Cookies</h3>
-        <p>$5.99</p>
-      </div>
-      <div class="product-card">
-        <img src="https://source.unsplash.com/200x150/?cupcake" alt="Cupcake" />
-        <h3>Vanilla Cupcake</h3>
-        <p>$3.99</p>
-      </div>
+  <div class="content">
+    <div id="login" style="display:none">
+      <h2>Login</h2>
+      <input type="text" placeholder="Username" id="username" />
+      <input type="password" placeholder="Password" id="password" />
+      <button onclick="login()">Submit</button>
     </div>
-  </section>
 
-  <section id="about">
-    <h2>About Us</h2>
-    <p>We are a family-run bakery passionate about quality and freshness.</p>
-  </section>
+    <h2 id="section1">AI Products</h2>
+    <div id="products"></div>
+  </div>
 
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>Email: hello@sweettreats.com | Phone: 123-456-7890</p>
-  </section>
+  <script>
+    const products = [
+      { id: 1, name: 'AI Assistant', price: 49 },
+      { id: 2, name: 'Smart Finance Bot', price: 29 },
+      { id: 3, name: 'AI Resume Builder', price: 19 },
+      { id: 4, name: 'AI Image Enhancer', price: 39 },
+      { id: 5, name: 'Chatbot Pro', price: 25 },
+      { id: 6, name: 'Voice-to-Text Genius', price: 22 },
+      { id: 7, name: 'AI Code Reviewer', price: 35 },
+      { id: 8, name: 'Text Summarizer', price: 18 },
+      { id: 9, name: 'Language Translator AI', price: 30 },
+      { id: 10, name: 'AI Marketing Tool', price: 45 }
+    ];
 
-  <footer>
-    <p>&copy; 2025 Sweet Treats Bakery</p>
-  </footer>
+    let cart = [];
+
+    function showProducts() {
+      const container = document.getElementById('products');
+      container.innerHTML = '';
+      products.forEach(product => {
+        const div = document.createElement('div');
+        div.className = 'product';
+        div.innerHTML = `
+          <h3>${product.name}</h3>
+          <p>Price: $${product.price}</p>
+          <button onclick="addToCart(${product.id})">Add to Cart</button>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    function addToCart(id) {
+      const product = products.find(p => p.id === id);
+      cart.push(product);
+      document.getElementById('cart-count').innerText = cart.length;
+      alert(`${product.name} added to cart!`);
+    }
+
+    function viewCart() {
+      let total = 0;
+      let items = 'Your Cart:\n';
+      cart.forEach(p => {
+        items += `- ${p.name} ($${p.price})\n`;
+        total += p.price;
+      });
+      items += `\nTotal: $${total}`;
+      alert(items);
+    }
+
+    function showLogin() {
+      document.getElementById('login').style.display = 'block';
+    }
+
+    function login() {
+      const username = document.getElementById('username').value;
+      alert(`Welcome, ${username}!`);
+      document.getElementById('login').style.display = 'none';
+    }
+
+    showProducts();
+  </script>
 </body>
 </html>
